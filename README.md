@@ -1,19 +1,88 @@
-Portfolio Hedging & Risk Management AnalysisA capstone financial risk management project evaluating hedging strategies for High-Net-Worth Individual (HNI) portfolios holding long equity positions. This repository analyzes and models downside risk mitigation using Futures Contracts (Short Hedge) and Protective Put Options Strategies on standard National Stock Exchange (NSE) listed assets.Table of ContentsExecutive SummaryPortfolio Baseline HoldingsHedging Strategies & MethodologiesStrategy A: Futures Short HedgeStrategy B: Protective Put Options HedgeMathematical Framework & Payoff AnalysisScenario Analysis & Stress TestingPayoff DiagramsRepository ArtifactsKey Strategic InsightsAbout MeExecutive SummaryHigh-Net-Worth Individual (Mr. A) holds an equity portfolio valued at ₹16,80,000 consisting of two key equities: Ashok Leyland and Larsen & Toubro (L&T). Due to market volatility, the objective is to design, model, and compare two distinct hedging frameworks using exchange-traded derivatives (Futures and Options):Futures Hedging (Delta Neutralization): Completely locks portfolio values by counteracting underlying spot price movements with derivative short positions.Options Hedging (Protective Put): Establishes a hard floor on potential portfolio losses while preserving upside participation above the calculated breakeven threshold.Portfolio Baseline HoldingsThe baseline holding consists of long positions in spot equities:Asset NameHolding Quantity (Nshares​)Purchase Price (P0​)Total Investment (Exposure)Market Capitalization / SectorAshok Leyland5,000 shares₹180.00₹9,00,000Automotive / Commercial VehiclesLarsen & Toubro (L&T)300 shares₹2,600.00₹7,80,000Infrastructure / Capital GoodsTotal Portfolio Value——₹16,80,000Diversified Equity⚙️ Hedging Strategies & Methodologies1. Futures Short Hedge (Linear Delta-Neutral)To protect against downside asset devaluation, futures contracts are shorted corresponding to exchange lot sizes.Ashok Leyland Futures:NSE Lot Size: $7,000\text{ shares}$Futures Entry Price: $₹182.00$Execution: Short 1 Futures Lot ($7,000\text{ units}$) against $5,000$ spot shares.Dynamics: Represents a slight over-hedge ratio ($\approx 1.4\times$) due to contract standard lot size constraints.Larsen & Toubro (L&T) Futures:NSE Lot Size: $300\text{ shares}$Futures Entry Price: $₹2,620.00$Execution: Short 1 Futures Lot ($300\text{ units}$) against $300$ spot shares.Dynamics: Perfect $1:1$ linear hedge. Total directional delta neutralized.2. Protective Put Options Hedge (Asymmetric Risk)Protective Put strategies require purchasing Out-of-the-Money / At-the-Money put options to buy portfolio downside insurance.Ashok Leyland Protective Put:Strike Price ($K$): $₹180.00$Premium per share ($P_{premium}$): $₹4.00$Lot Size ($N_{lot}$): $7,000\text{ shares}$Total Upfront Outlay: $7,000 \times ₹4 = ₹28,000$Larsen & Toubro Protective Put:Strike Price ($K$): $₹2,600.00$Premium per share ($P_{premium}$): $₹70.00$Lot Size ($N_{lot}$): $300\text{ shares}$Total Upfront Outlay: $300 \times ₹70 = ₹21,000$🧮 Mathematical Framework & Payoff Analysis1. Breakeven FormulaThe effective breakeven price ($S_{BE}$) for a protective put strategy is determined by adding the per-share option premium cost to the initial stock purchase price:$$S_{BE} = P_{purchase} + P_{premium}$$Ashok Leyland Breakeven:$$S_{BE} = 180 + 4 = ₹184.00$$L&T Breakeven:$$S_{BE} = 2,600 + 70 = ₹2,670.00$$2. Net Payoff Function for Options StrategyFor a spot stock holding with $N_{shares}$ and a put option position with lot size $N_{lot}$, strike price $K$, and total premium $C_{premium}$, the combined payoff at spot price $S$ is expressed as:$$\text{Net Payoff}(S) = (S - P_0) \times N_{shares} + \max(K - S, 0) \times N_{lot} - C_{premium}$$Risk & Return Summary MatrixMetricAshok LeylandLarsen & Toubro (L&T)Combined PortfolioInitial Capital Commitment₹9,00,000₹7,80,000₹16,80,000Hedging Premium Cost₹28,000₹21,000₹49,000Breakeven Spot Price₹184.00₹2,670.00N/AMaximum Strategy Risk / Loss₹28,000 (Capped)₹21,000 (Capped)₹49,000 (Capped)Maximum Upside Gain$\infty$ (Unlimited)$\infty$ (Unlimited)$\infty$ (Unlimited)📊 Scenario Analysis & Stress TestingA. Ashok Leyland Option Payoff Table ($P_0 = 180$, $K = 180$, Premium $= ₹28,000$)Market Spot Price (S)Equity Spot P&L (₹)Put Option P&L (₹)Net Combined P&L (₹)Market Regime / Result₹160.00 (Bearish)$-1,00,000$$+1,40,000$$+12,000$Protected (Over-hedge gain)₹180.00 (Flat)$0$$0$$-28,000$Maximum Loss (Premium Paid)₹184.00 (Breakeven)$+20,000$$0$$0$Zero P&L Neutral₹190.00 (Bullish)$+50,000$$0$$+22,000$Net ProfitB. L&T Option Payoff Table ($P_0 = 2,600$, $K = 2,600$, Premium $= ₹21,000$)Market Spot Price (S)Equity Spot P&L (₹)Put Option P&L (₹)Net Combined P&L (₹)Market Regime / Result₹2,500.00 (Bearish)$-30,000$$+30,000$$-21,000$Fully Protected (Capped Loss)₹2,600.00 (Flat)$0$$0$$-21,000$Maximum Loss (Premium Paid)₹2,670.00 (Breakeven)$+21,000$$0$$0$Zero P&L Neutral₹2,700.00 (Bullish)$+30,000$$0$$+9,000$Net Profit📈 Payoff DiagramsThe relationship between underlying spot market movements and strategy returns is illustrated below:                  OPTIONS PROTECTIVE PUT VS. SHORT FUTURES
-  Net P&L (₹)
-       ^
-       |                                   / (Protective Put Upside)
-       |                                  /
-       |                                 /
-  +    |                                /
-  -------------------------------------/-----------------------> Spot Price (S)
-  -    |         _____________________/  <-- (Put Max Loss = Premium Paid)
-       |        /
-       |       / (Short Futures Hedge = Fixed Neutral P&L Line)
-       v
+# Portfolio Hedging & Risk Management Analysis
 
-Futures Line (Linear): Lock-in payoff eliminating upside profitability in exchange for 100% downside coverage.Options Line (Convex): Non-linear asymmetric payoff curve establishing a floor at $-\text{Premium}$ with unlimited upside expansion above $S_{BE}$.📁 Repository ArtifactsThis repository contains all supporting analysis files and dynamic financial models:├── Hedging_Calculations_MrA.xlsx   # Interactive Excel model with dynamic formulas & scenario grids
-├── Intellipaat Capstone.pdf        # Detailed project report write-up and analytical answers
-├── payoff diagram.pdf               # High-resolution vector visualizations of payoff structures
-└── README.md                       # Comprehensive repository documentation
+A quantitative financial modeling project evaluating downside risk mitigation strategies for high-net-worth equity holdings using derivative instruments (Futures and Options) on the National Stock Exchange (NSE).
 
-Key Strategic InsightsTrade-Off Analysis:Futures offer cost-free downside protection (excluding margin requirements and potential cost-of-carry), but completely sacrifice capital appreciation during market rallies.Options function as true capital protection insurance policies. They cap maximum drawdowns to a pre-determined cost ($\approx 2.91\%$ of total portfolio capital) while preserving participation in equity bull runs.Contract Imperfections (Standardization Risk):Exchange-traded lot sizes create lumpiness in hedging. For Ashok Leyland, hedging 5,000 shares with a 7,000 lot futures/options contract creates a net short tilt below the strike, introducing positive volatility sensitivity ($\text{Vega}/\text{Gamma}$ dynamics).👨‍💻 About MeEdward GhoshFinancial AnalystHi there! Welcome to my repository. I am a passionate financial analyst with a focus on investment management, financial derivatives, Capital Markets and Trade Life Cycle.🛠 Tech Stack & Core Competencies:Financial Domain: Portfolio Management, Financial Derivatives, Equity Research, Capital Markets.Certifications & Education: Diploma in Investment Banking & Capital Markets from IIM Ranchi.📫 Connect with Me:LinkedIn: linkedin.com/in/edwardghoshGitHub: github.com/edwardghoshEmail: edwardghosh9@gmail.comIf you find this project useful, feel free to give it a ⭐️ star!
+---
+
+## Executive Summary
+
+This repository presents a capstone project analysis on hedging a long equity spot portfolio valued at ₹16,80,000. The underlying holdings consist of large-cap equity positions in Ashok Leyland and Larsen & Toubro (L&T).
+
+The project compares two primary derivative hedging methodologies:
+1. **Futures Hedge (Short Futures):** Fully neutralizes directional market exposure by locking in payout values, eliminating downside risk while capping upside potential[cite: 2].
+2. **Options Hedge (Protective Put):** Functions as portfolio downside insurance by capping maximum capital losses to the premium paid while preserving unlimited upside profit participation[cite: 2].
+
+---
+
+## Portfolio Composition
+
+| Asset | Position Size | Entry Price (₹) | Contract Lot Size | Total Capital Invested (₹) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Ashok Leyland** | 5,000 shares | ₹180.00 | 7,000 | ₹9,00,000 |
+| **Larsen & Toubro (L&T)** | 300 shares | ₹2,600.00 | 300 | ₹7,80,000 |
+| **Total Portfolio** | — | — | — | **₹16,80,000** |
+
+---
+
+## Hedging Strategy Execution
+
+### 1. Short Futures Strategy
+* **Ashok Leyland:** Sell 1 Futures Lot (7,000 shares) @ ₹182[cite: 2].
+  * *Note:* Results in a slight over-hedge due to standardized NSE contract lot sizes (7,000 contract units vs. 5,000 spot shares held)[cite: 2].
+* **Larsen & Toubro (L&T):** Sell 1 Futures Lot (300 shares) @ ₹2,620[cite: 2].
+  * *Note:* Exact 1:1 match against underlying spot position[cite: 2].
+
+### 2. Protective Put Strategy
+* **Ashok Leyland:** Purchase 1 Put Option Lot (Strike $K = \text{₹}180$, Premium $P = \text{₹}4/\text{share}$, Total Cost = ₹28,000)[cite: 2].
+* **Larsen & Toubro (L&T):** Purchase 1 Put Option Lot (Strike $K = \text{₹}2,600$, Premium $P = \text{₹}70/\text{share}$, Total Cost = ₹21,000)[cite: 2].
+
+---
+
+## Mathematical Formulations & Payoff Models
+
+### Breakeven Formulation
+For a Protective Put strategy, the breakeven spot price ($S_{BE}$) at expiration is defined as:
+
+$$S_{BE} = K + P$$
+
+Where:
+* $K$ = Option Strike Price
+* $P$ = Premium Paid per share
+
+### Net Payoff Equations
+* **Spot Position Payoff:** $\Pi_{\text{spot}} = S_T - S_0$
+* **Put Option Payoff:** $\Pi_{\text{put}} = \max(K - S_T, 0) - P$
+* **Combined Protective Put Net Payoff:**
+
+$$\Pi_{\text{net}} = (S_T - S_0) + \max(K - S_T, 0) - P$$
+
+---
+
+## Risk & Payoff Metrics
+
+| Asset | Strike Price ($K$) | Premium Cost | Breakeven Price ($S_{BE}$) | Max Downside Risk | Upside Potential |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Ashok Leyland** | ₹180 | ₹28,000 (₹4/sh) | **₹184.00** | ₹28,000 | Unlimited |
+| **Larsen & Toubro (L&T)** | ₹2,600 | ₹21,000 (₹70/sh) | **₹2,670.00** | ₹21,000 | Unlimited |
+
+### Scenario Analysis Matrix
+
+#### 1. Ashok Leyland (5,000 shares @ ₹180 | Put Strike: ₹180 | Premium: ₹28,000)[cite: 2]
+* **Bearish Scenario ($S_T = \text{₹}160$):** Spot Loss = -₹1,00,000 | Put Gain = +₹1,40,000 | **Net Result = +₹12,000 Profit** *(slight net profit driven by 7,000 contract lot over-hedge)*[cite: 2].
+* **At-the-Money Scenario ($S_T = \text{₹}180$):** Spot Change = ₹0 | Put Gain = ₹0 | **Net Result = -₹28,000 Loss** *(capped at premium paid)*[cite: 2].
+* **Bullish Scenario ($S_T = \text{₹}190$):** Spot Gain = +₹50,000 | Put Gain = ₹0 | **Net Result = +₹22,000 Profit**[cite: 2].
+
+#### 2. Larsen & Toubro (300 shares @ ₹2,600 | Put Strike: ₹2,600 | Premium: ₹21,000)[cite: 2]
+* **Bearish Scenario ($S_T = \text{₹}2,500$):** Spot Loss = -₹30,000 | Put Gain = +₹30,000 | **Net Result = -₹21,000 Loss** *(strictly capped at total premium)*[cite: 2].
+* **At-the-Money Scenario ($S_T = \text{₹}2,600$):** Spot Change = ₹0 | Put Gain = ₹0 | **Net Result = -₹21,000 Loss**[cite: 2].
+* **Bullish Scenario ($S_T = \text{₹}2,700$):** Spot Gain = +₹30,000 | Put Gain = ₹0 | **Net Result = +₹9,000 Profit**[cite: 2].
+
+---
+
+## Repository Structure
+
+```text
+├── Hedging_Calculations_MrA.xlsx   # Interactive financial model with payoff tables & sensitivity analysis
+├── Intellipaat Capstone.pdf        # Detailed project write-up and analytical solution
+├── payoff diagram.pdf               # Payoff curve visual models (Futures vs. Protective Put)
+└── README.md                       # Project documentation
