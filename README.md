@@ -76,13 +76,3 @@ $$\Pi_{\text{net}} = (S_T - S_0) + \max(K - S_T, 0) - P$$
 * **Bearish Scenario ($S_T = \text{₹}2,500$):** Spot Loss = -₹30,000 | Put Gain = +₹30,000 | **Net Result = -₹21,000 Loss** *(strictly capped at total premium)*[cite: 2].
 * **At-the-Money Scenario ($S_T = \text{₹}2,600$):** Spot Change = ₹0 | Put Gain = ₹0 | **Net Result = -₹21,000 Loss**[cite: 2].
 * **Bullish Scenario ($S_T = \text{₹}2,700$):** Spot Gain = +₹30,000 | Put Gain = ₹0 | **Net Result = +₹9,000 Profit**[cite: 2].
-
----
-
-## Repository Structure
-
-```text
-├── Hedging_Calculations_MrA.xlsx   # Interactive financial model with payoff tables & sensitivity analysis
-├── Intellipaat Capstone.pdf        # Detailed project write-up and analytical solution
-├── payoff diagram.pdf               # Payoff curve visual models (Futures vs. Protective Put)
-└── README.md                       # Project documentation
